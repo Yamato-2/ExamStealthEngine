@@ -16,5 +16,6 @@ var stylesheet0x00ff01ff = `
 `;
 
 function onInit0x00ff01ff() {
+    console.log("Loaded: /Modules/ForceCopyPasteCut.js");
     window.document.styleSheets[0].insertRule(stylesheet0x00ff01ff, 0);
 }

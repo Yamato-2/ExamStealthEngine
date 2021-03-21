@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", onInit0x00ff02ff, false);
-var i0x00ff02ff = document.createTextNode(`
+var i0x00ff02ff = `(function() {
+    console.log("Loaded: /Modules/NoIntervals.js");
     for (var i = 0; i < 99999; i++) {
         clearInterval(i);
     }
@@ -9,10 +9,9 @@ var i0x00ff02ff = document.createTextNode(`
         window.onblur = null;
         window.onfocus = null;
     },100);
-`);
-var sc0x00ff02ff = document.createElement("script");
-sc0x00ff02ff.appendChild(i0x00ff02ff);
+})();
+`;
 
-function onInit0x00ff02ff() {
-    document.body.appendChild(sc0x00ff02ff);
-}
+document.documentElement.setAttribute("onreset", i0x00ff02ff);
+document.documentElement.dispatchEvent(new CustomEvent('reset'));
+document.documentElement.removeAttribute("onreset", i0x00ff02ff);

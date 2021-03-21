@@ -1,25 +1,18 @@
-document.addEventListener("DOMContentLoaded", onInit0x00ff03ff, false);
-
-var i0x00ff03ff = document.createTextNode(`
-    function getAlternateLocalStorage() {
-        var ifrm = document.createElement("iframe");
-        ifrm.setAttribute("src", window.location.href);
-        document.body.appendChild(ifrm);
-        return ifrm;
-    }
-    var i = getAlternateLocalStorage();
-    var ls0x00ff03ff = i.contentWindow.localStorage;  
-    i.parentNode.removeChild(i);
-    delete window.localStorage;
-    Object.defineProperty(window, "localStorage", {
-        get: function() {return ls0x00ff03ff},
-        set: function() {throw new ReferenceError("Attempt to overwrite window.localStorage has been blocked.")}
-    })
+var i0x00ff03ff = `(function(){
+    console.log("Loaded: /Modules/NoLocalStorage.js");
+    var originw = window.localStorage;
+    window.cLocalStorage = originw;
+    var objdefprop = Object.defineProperty;
+    Object.defineProperty = function defineProperty(a,b,c) {
+        if (b == "localStorage") {
+            throw new ReferenceError("Access to write to this object has been locked!");
+            
+        } else {
+            objdefprop(a,b,c);
+        };
+    };  
     localStorage.clear();
-`);
-var sc0x00ff03ff = document.createElement("script");
-sc0x00ff03ff.appendChild(i0x00ff03ff);
-
-function onInit0x00ff03ff() {
-    document.head.append(sc0x00ff03ff);
-}
+})()`;
+document.documentElement.setAttribute("reset", i0x00ff03ff);
+document.documentElement.dispatchEvent(new CustomEvent('reset'));
+document.documentElement.removeAttribute("reset", i0x00ff03ff);
